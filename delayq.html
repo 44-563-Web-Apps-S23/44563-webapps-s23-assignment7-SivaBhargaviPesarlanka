@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html> <head> <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style>
+<title>DelayQ</title>
+<h2>Siva Bhargavi Pesarlanka builds a delaying queue</h2>
+</head>
+
+
+
+<body>
+    <div class="flex-container" id="target">
+        <div class="delayq" style="font-family: 'Courier New', Courier, monospace;">row item 1</div>   
+        <div class="delayq" style="font-family: 'Courier New', Courier, monospace">row item 2</div>  
+        <div class="delayq" style="font-family: 'Courier New', Courier, monospace;">row item 3</div>  
+    </div>
+    <br>
+        <label for="inputElement" style="color:forestgreen"><b><i>Type something: </i></b></label>
+    <br>
+<input type="text" id="text_input" name="text_input" /><br />
+      <button onclick="makeNewDiv()">Add value</button>
+      <p>Press the button to add the last element to the container.</p>
+      <button class="btn btn-warning" onclick="get()">Get</button>
+      <button class="btn btn-info" onclick="delay()">Delay</button>
+    </div>
+    <br />
+    <div>
+      <button class="btn btn-primary" onclick="promotion()">Promote</button>
+    </div>
+  </div>
+</body>
+<script>
+function makeNewDiv() 
+{
+  let element = document.createElement("div");
+  let value  = document.getElementById("text_input").value;
+  element.innerHTML = value
+  element.className =  "delayq";
+  element.style.color = "black";
+  console.log(element)
+
+  let container = document.getElementById("target");
+  container.append(element, container.firstChild);
+}
+function get()
+{
+  queueItems = document.getElementsByClassName("delayq");
+  if (queueItems.length > 1) 
+  {
+    queueItems[0].remove();
+  }
+}
+</script>
+</html>	
